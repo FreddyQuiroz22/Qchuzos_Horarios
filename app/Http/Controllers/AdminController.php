@@ -54,7 +54,7 @@ class AdminController extends Controller
 
     private function calcularTotalHoras($registros)
 {
-    $horasTotales = 0;
+    $minutosTotales = 0;
     $entrada = null;
 
     foreach ($registros as $registro) {
@@ -66,14 +66,15 @@ class AdminController extends Controller
         // Si es una salida, calculamos la diferencia con la entrada
         if ($registro->tipo === 'salida' && $entrada !== null) {
             $salida = strtotime($registro->fecha . ' ' . $registro->hora); // Convertimos la salida a timestamp
-            // Sumar la diferencia entre la salida y la entrada en horas
-            $horasTotales += ($salida - $entrada) / 3600; // Convertimos la diferencia de segundos a horas
+            // Sumar la diferencia entre la salida y la entrada en minutos
+            $minutosTotales += ($salida - $entrada) / 60; // Convertimos la diferencia de segundos a minutos
             $entrada = null; // Restablecemos la entrada, porque ya hemos calculado la diferencia
         }
     }
 
-    // Devolver el total de horas trabajadas redondeado a 2 decimales
-    return round($horasTotales, 2);
+    // Devolver el total de minutos trabajados
+    return round($minutosTotales, 2);
 }
+
 
 }

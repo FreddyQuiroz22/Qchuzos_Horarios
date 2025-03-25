@@ -16,7 +16,7 @@ class RegistroController  extends Controller
         
         //dd($horaActual, $fechaActual); // Verifica que la hora se está generando bien
 
-        if (Carbon::createFromFormat('H:i:s', $horaActual)->between(Carbon::createFromFormat('H:i:s', '06:00:00'), Carbon::createFromFormat('H:i:s', '17:15:59'))) {
+        if (Carbon::createFromFormat('H:i:s', $horaActual)->between(Carbon::createFromFormat('H:i:s', '06:00:00'), Carbon::createFromFormat('H:i:s', '17:20:00'))) {
             $tipo = 'Entrada';
         } else {
             $tipo = 'Salida';
